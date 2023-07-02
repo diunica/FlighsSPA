@@ -32,7 +32,7 @@ export class FlightsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public badgeList: Array<{ text: string; value: string }> = [
     { text: this.translate.instant('American Dollar'), value: 'USD' },
-    { text: this.translate.instant('Colombian Peso'), value: 'COP' },    
+    { text: this.translate.instant('Colombian Peso'), value: 'COP' },
     { text: this.translate.instant('Mexican Peso'), value: 'MXN' }
   ];
 
@@ -44,13 +44,17 @@ export class FlightsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.flightForm = this.fb.group({
-      origin: ['', [Validators.required, Validators.maxLength(3), Validators.pattern('(?=.*[A-Z])')]],
-      destination: ['', [Validators.required, Validators.maxLength(3)]],
+      origin: ['', [Validators.required, Validators.maxLength(3), Validators.pattern('^[A-Z]*$')]],
+      destination: ['', [Validators.required, Validators.maxLength(3), Validators.pattern('^[A-Z]*$')]],
       badge: ['']
     });
     this.onDataRetrieved();
     this.isResult = false;
     this.isEmpty = false;
+  }
+
+  get flightFormControl() {
+    return this.flightForm.controls;
   }
 
   ngAfterViewInit(): void {
@@ -92,26 +96,26 @@ export class FlightsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   canSearch() {
-    //return this.flightForm.valid;
-    return true;
+    return this.flightForm.valid;
+    //return true;
   }
 
   search() {
-    //if (this.flightForm.valid) {
-    const data = this.loadSearch();
-    this.message = this.translate.instant('No flights found for origin and destination', { blOrigin: data.origin, blDestination: data.destination });
-    this.flightsService.getFly(data.origin, data.destination, data.badge).toPromise().then((result: any) => {
-      this.flights = result[0]?.Flights;
-      this.info = result[0];
-      if (this.info) {
-        this.isResult = true;
-        this.isEmpty = false;
-      } else {
-        this.isResult = false;
-        this.isEmpty = true;
-      }
-    });
-    //}
+    if (this.flightForm.valid) {
+      const data = this.loadSearch();
+      this.message = this.translate.instant('No flights found for origin and destination', { blOrigin: data.origin, blDestination: data.destination });
+      this.flightsService.getFly(data.origin, data.destination, data.badge).toPromise().then((result: any) => {
+        this.flights = result[0]?.Flights;
+        this.info = result[0];
+        if (this.info) {
+          this.isResult = true;
+          this.isEmpty = false;
+        } else {
+          this.isResult = false;
+          this.isEmpty = true;
+        }
+      });
+    }
   }
 
   loadSearch() {

@@ -1,16 +1,28 @@
-<div class="h-100 m-0 p-0" >
+<div class="h-100 m-0 p-0">
     <div class="form-horizontal well tab-form cmp-div">
         <form class="form-horizontal general-form h-100" autocomplete="off" [formGroup]="flightForm" kendoTooltip
             filter=".has-error input[title]">
             <div class="row no-gutters">
 
                 <div class="col-sm-3">
-                    <div class="row form-group" [ngClass]="{ 'has-error': displayMessage.origin}">
+                    <div class="row form-group" [ngClass]="{ 'is-invalid': displayMessage.origin}">
                         <label class="col-sm-2 col-form-label">{{'Origin' | translate}}</label>
                         <div class="col-sm-5">
                             <input class="form-control" type="text" formControlName="origin"
                                 [title]="displayMessage.origin || ''" />
                         </div>
+                        <span class="text-danger"
+                            *ngIf="flightFormControl.origin.touched && flightFormControl.origin.errors?.required">
+                            Origin is required
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="flightFormControl.origin.touched && flightFormControl.origin.errors?.maxlength">
+                            Origin cannot exceed 3 characters
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="flightFormControl.origin.touched && flightFormControl.origin.errors?.pattern">
+                            Origin require only letters and upper case letters
+                        </span>
                     </div>
                 </div>
 
@@ -21,6 +33,18 @@
                             <input class="form-control" type="text" formControlName="destination"
                                 [title]="displayMessage.destination || ''" />
                         </div>
+                        <span class="text-danger"
+                            *ngIf="flightFormControl.origin.touched && flightFormControl.origin.errors?.required">
+                            Destination is required
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="flightFormControl.origin.touched && flightFormControl.origin.errors?.maxlength">
+                            Destination cannot exceed 3 characters
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="flightFormControl.origin.touched && flightFormControl.origin.errors?.pattern">
+                            Destination require only letters and upper case letters
+                        </span>
                     </div>
                 </div>
 
