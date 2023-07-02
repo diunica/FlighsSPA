@@ -1,0 +1,30 @@
+{
+    "Origin": "Origen",
+    "Destination": "Destino",
+    "Badge": "Divisa",
+    "Serach": "Buscar",
+    
+    "Fligts_ValMgs": {
+      "origin": {
+        "required": "El origen es obligatorio",
+        "maxlength": "El origen no puede superar los 3 caracteres",
+        "pattern": "El origen solo requiere letras y mayúsculas"
+      },
+      "destination": {
+        "required": "El destino es obligatorio",
+        "maxlength": "El destino no puede superar los 3 caracteres",
+        "pattern": "El destino solo requiere letras y mayúsculas"
+      }
+    },
+    
+    "Price": "Precio",
+    "Carrier": "Portador",
+    "Number": "Número",
+    
+    "There are no results to show": "No hay resultados que mostrar",
+    "No flights found for origin and destination": "No se han encontrado vuelos para origen: {{blOrigin}} y destino: {{blDestination}}",
+    
+    "American Dollar": "Dólar Americano",
+    "Colombian Peso": "Peso Colombiano",
+    "Mexican Peso": "Peso Mexicano"
+}

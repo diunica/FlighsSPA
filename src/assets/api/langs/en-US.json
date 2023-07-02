@@ -1,0 +1,30 @@
+{
+    "Origin": "Origin",
+    "Destination": "Destination",
+    "Badge": "Badge",
+    "Serach": "Search",
+
+    "Fligts_ValMgs": {
+        "origin": {
+            "required": "Origin is required",
+            "maxlength": "Origin cannot exceed 3 characters",
+            "pattern": "Origin require only letters and upper case letters"
+        },
+        "destination": {
+            "required": "Destination is required",
+            "maxlength": "Destination cannot exceed 3 characters",
+            "pattern": "Destination require only letters and upper case letters"
+        }
+    },
+
+    "Price": "Price",
+    "Carrier": "Carrier",
+    "Number": "Number",
+
+    "There are no results to show": "There are no results to show",
+    "No flights found for origin and destination": "No flights found for origin: {{blOrigin}} and destination: {{blDestination}}",
+
+    "American Dollar": "American Dollar",
+    "Colombian Peso": "Colombian Peso",
+    "Mexican Peso": "Mexican Peso"
+}

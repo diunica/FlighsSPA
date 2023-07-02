@@ -2,8 +2,14 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const path = '/';
+
 export const environment = {
-  production: false
+  production: false,
+  isDebugMode: true,
+  base_api_url: 'http://localhost:5252/flyapi/',
+  base_url : 'http://localhost:4200/',
+  path: path
 };
 
 /*

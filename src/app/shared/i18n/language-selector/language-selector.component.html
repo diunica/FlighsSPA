@@ -1,0 +1,3 @@
+<a *ngFor="let language of languages" (click)="setLanguage(language)" [class.lang-active]="language==currentLanguage" title="{{language.title}}">
+  <img [src]="getLanguageImage(language.lang)" alt="{{language.title}}">
+</a>

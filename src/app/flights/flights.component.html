@@ -1,0 +1,89 @@
+<div class="h-100 m-0 p-0" >
+    <div class="form-horizontal well tab-form cmp-div">
+        <form class="form-horizontal general-form h-100" autocomplete="off" [formGroup]="flightForm" kendoTooltip
+            filter=".has-error input[title]">
+            <div class="row no-gutters">
+
+                <div class="col-sm-3">
+                    <div class="row form-group" [ngClass]="{ 'has-error': displayMessage.origin}">
+                        <label class="col-sm-2 col-form-label">{{'Origin' | translate}}</label>
+                        <div class="col-sm-5">
+                            <input class="form-control" type="text" formControlName="origin"
+                                [title]="displayMessage.origin || ''" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="row form-group" [ngClass]="{ 'has-error': displayMessage.destination}">
+                        <label class="col-sm-2 col-form-label">{{'Destination' | translate}}</label>
+                        <div class="col-sm-5">
+                            <input class="form-control" type="text" formControlName="destination"
+                                [title]="displayMessage.destination || ''" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="row form-group">
+                        <label class="col-sm-2 col-form-label">{{'Badge' | translate}}</label>
+                        <div class="col-sm-10">
+                            <kendo-dropdownlist [data]="badgeList" textField="text" valueField="value"
+                                [valuePrimitive]="true" formControlName="badge"></kendo-dropdownlist>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <button class="btn btn-primary" [disabled]="!canSearch()" (click)="search()">
+                        {{ 'Search' | translate }}</button>
+                </div>
+
+            </div>
+        </form>
+
+        <div class="col-sm-12">
+            <section *ngIf="isResult">
+                <div class="container">
+                    <div class="row mt-15">
+                        <div class="col-xl-4 col-6">
+                            <ul class="font-15 pl-15 pt-0 mt-0 pb-0 mb-0" style="list-style-type:none;">
+                                <li style="margin-left:-14px;" class="ml-0 pl-0">
+                                    <strong>{{ 'Origin' | translate }}:</strong> {{ info.Origin }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-4 col-6">
+                            <ul class="font-15 pl-15 pt-0 mt-0  pb-0 mb-0" style="list-style-type:none;">
+                                <li style="margin-left:-14px;" class="ml-0 pl-0">
+                                    <strong>{{ 'Destination' | translate }}:</strong> {{ info.Destination }}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-4 col-6">
+                            <ul class="font-15 pl-15 pt-0 mt-0 pb-0 mb-0" style="list-style-type:none;">
+                                <li style="margin-left:-14px;" class="ml-0 pl-0">
+                                    <strong>{{ 'Price' | translate }}:</strong> {{ info.Price }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <kendo-grid [data]="flights">
+                    <kendo-grid-column field="Origin" title="{{ 'Origin' | translate }}"></kendo-grid-column>
+                    <kendo-grid-column field="Destination" title="{{ 'Destination' | translate }}"></kendo-grid-column>
+                    <kendo-grid-column field="Price" title="{{ 'Price' | translate }}"></kendo-grid-column>
+                    <kendo-grid-column field="Transport.FlightCarrier"
+                        title="{{ 'Carrier' | translate }}"></kendo-grid-column>
+                    <kendo-grid-column field="Transport.FlightNumber"
+                        title="{{ 'Number' | translate }}"></kendo-grid-column>
+                </kendo-grid>
+            </section>
+            <section *ngIf="isEmpty">
+                <h2>{{ 'There are no results to show' | translate }}</h2>
+                <p>{{ message }}</p>
+            </section>
+
+        </div>
+    </div>
+</div>
